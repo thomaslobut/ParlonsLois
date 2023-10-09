@@ -24,17 +24,11 @@ jobs:
     
     - name: CD in project
       run: cd 'ParlonsLoisApp'
-    
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
       with:
-        node-version: '16'
-        cache: 'yarn'
-  
-    - name: Install project dependencies
-      run: yarn
-      
-    - name: Run test
-      run: |
-        yarn test-ci
+        node-version: ${{ matrix.node-version }}
+        
+    - run: npm test
 
