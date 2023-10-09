@@ -31,4 +31,4 @@ jobs:
         node-version: ${{ matrix.node-version }}
 
     - name: Run test
-      run: npm test
+      run: cd ParlonsLoisApp && npm test
