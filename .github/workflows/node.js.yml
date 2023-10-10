@@ -13,17 +13,17 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./ParlonsLoisApp
 
     strategy:
       matrix:
-        node-version: [14.x, 16.x, 18.x]
+        node-version: [16.x, 18.x, 19.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
     - uses: actions/checkout@v3
-    
-    - name: CD in project
-      run: cd 'ParlonsLoisApp'
 
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
@@ -31,7 +31,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
 
     - name: Install dependencies
-      run: cd 'ParlonsLoisApp' && npm install
+      run: npm install
       
     - name: Run test
-      run: cd ParlonsLoisApp && npm test
+      run: npm test
